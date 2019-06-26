@@ -16,11 +16,9 @@ html {
 .grid-margin {
   float: left;
   width: 20%;
-  border: 1px solid black;
 }
 
 .grid-playground-container {
   float: left;
   width: 60%;
-  border: 1px solid black;
 }

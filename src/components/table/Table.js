@@ -72,6 +72,7 @@ class Table extends Component {
               content={this.dataRowsArr[rowIndex][cellIndex]}
               fixed={cellIndex === 0}
               height={this.state.cellHeights[rowIndex + 1]}
+              greyed={rowIndex % 2 === 1 ? true : false}
             />
           );
         })}

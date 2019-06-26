@@ -1,7 +1,7 @@
 import React from "react";
 import "./table.css";
 
-const Cell = ({ content, header, fixed, height }) => {
+const Cell = ({ content, header, fixed, height, greyed }) => {
   const classNameArr = () => {
     let classNames = ["Cell"];
     if (fixed) {
@@ -9,6 +9,9 @@ const Cell = ({ content, header, fixed, height }) => {
     }
     if (header) {
       classNames.push("Cell-header");
+    }
+    if (greyed) {
+      classNames.push("Cell-darkened");
     }
     return classNames.join(" ");
   };
