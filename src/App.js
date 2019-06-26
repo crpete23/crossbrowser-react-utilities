@@ -8,7 +8,8 @@ const data = {
     id: 1,
     name: "part1",
     type: "type1",
-    material: "material1"
+    material:
+      "material1 helo my name is chris and this is going to be a long div"
   },
   2: {
     id: 2,
@@ -30,8 +31,7 @@ function App() {
       <div className="grid-margin">grid</div>
       <div className="grid-playground-container">
         Test Area
-        <div>Stuff</div>
-        <Table data={data} />
+        <Table data={data} title="testing" />
       </div>
       <div className="grid-margin">grid</div>
     </div>
