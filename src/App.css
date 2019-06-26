@@ -1,0 +1,26 @@
+/* Universal border-box */
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.app {
+  overflow: auto;
+  text-align: center;
+}
+
+.grid-margin {
+  float: left;
+  width: 20%;
+  border: 1px solid black;
+}
+
+.grid-playground-container {
+  float: left;
+  width: 60%;
+  border: 1px solid black;
+}
