@@ -39,6 +39,12 @@ class Table extends Component {
     );
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (!_.isEqual(prevState.currentRows, this.state.currentRows)) {
+      this.handleCellHeightResize();
+    }
+  }
+
   componentWillUnmount() {
     window.removeEventListener(
       "resize",
@@ -127,12 +133,22 @@ class Table extends Component {
     this.setState({ cellHeights: this.getTallestCellHeights() });
   };
 
-  updateRange = (minRange, maxRange) => {
-    this.setState({ minRange: minRange, maxRange: maxRange });
+  updateRange = newMin => {
+    if (newMin > this.state.dataRange || newMin < 1) {
+      return;
+    }
+    let max = Math.min(newMin + 9, this.state.dataRange);
+    this.setState({
+      minRange: newMin,
+      maxRange: max,
+      currentRows: this.getRows(this.props.data, newMin, max)
+    });
   };
 
   render() {
     console.log("rendering");
+
+    console.log(this.state.minRange, this.state.maxRange);
 
     const theadMarkup = (
       <tr key="heading">{this.state.headings.map(this.renderHeadingRow)}</tr>

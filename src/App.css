@@ -22,3 +22,8 @@ html {
   float: left;
   width: 60%;
 }
+
+/* remove blue outline from focused button */
+button:focus {
+  outline: 0;
+}

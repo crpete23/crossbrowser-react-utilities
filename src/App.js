@@ -98,6 +98,63 @@ const data = {
     name: "part3",
     type: "type3",
     material: "material3"
+  },
+  51: {
+    id: 7,
+    name: "part1",
+    type: "type1",
+    material:
+      "material1 helo my name is chris and this is going to be a long div"
+  },
+  52: {
+    id: 8,
+    name: "part2",
+    type: "type2",
+    material: "material2"
+  },
+  53: {
+    id: 9,
+    name: "part3",
+    type: "type3",
+    material: "material3"
+  },
+  61: {
+    id: 10,
+    name: "part1",
+    type: "type1",
+    material:
+      "material1 helo my name is chris and this is going to be a long div"
+  },
+  62: {
+    id: 11,
+    name: "part2",
+    type: "type2",
+    material: "material2"
+  },
+  63: {
+    id: 12,
+    name: "part3",
+    type: "type3",
+    material: "material3"
+  },
+  71: {
+    id: 13,
+    name: "part1",
+    type: "type1",
+    material:
+      "material1 helo my name is chris and this is going to be a long div"
+  },
+  72: {
+    id: 14,
+    name: "part2",
+    type: "type2",
+    material: "material2"
+  },
+  73: {
+    id: 15,
+    name: "part3",
+    type: "type3",
+    material: "material3"
   }
 };
 
