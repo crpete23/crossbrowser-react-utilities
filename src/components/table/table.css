@@ -13,12 +13,10 @@
   padding: 10px;
   text-align: left;
   text-shadow: 1px 1px 1px #fff;
-  white-space: nowrap;
 }
 
 .Table tbody td {
   border-bottom: solid 1px #dee2e6;
-  white-space: nowrap;
   border-right: solid 1px #dee2e6;
 }
 
@@ -55,4 +53,31 @@
 .ScrollContainer {
   overflow-x: auto;
   margin-left: 145px;
+}
+
+.TableRange {
+  width: 50%;
+  float: left;
+}
+
+.PageRouterContainer {
+  width: 50%;
+  float: right;
+}
+
+.PageRouter {
+  display: flex;
+}
+
+.PageRouterButtons {
+}
+
+.PageRouterNumbers {
+  padding: 0 5px;
+  border-radius: 4px;
+}
+
+.ActivePage {
+  color: white;
+  background-color: #4285f4;
 }

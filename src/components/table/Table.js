@@ -1,47 +1,76 @@
 import React, { Component } from "react";
 import Cell from "./Cell";
+import PageRouter from "./PageRouter";
 import "./table.css";
+
+const _ = require("lodash");
 
 class Table extends Component {
   constructor(props) {
     super(props);
 
+    let keys = [];
+    if (this.props.data) {
+      keys = Object.keys(this.props.data);
+    }
+    let minRange = keys.length ? 1 : 0;
+    let maxRange = keys.length ? (keys.length > 9 ? 10 : keys.length) : 0;
+
     this.state = {
+      pagination: 10,
+      data: this.props.data || {},
+      headings: this.getHeadings(this.props.data),
+      currentRows: this.getRows(this.props.data, minRange, maxRange),
+      minRange: minRange,
+      maxRange: maxRange,
+      dataRange: keys.length,
       cellHeights: []
     };
 
     this.tableRef = React.createRef();
-
-    this.initializeData();
   }
 
   componentDidMount() {
+    //initialize cell heights in state
     this.handleCellHeightResize();
-    //consider debouncing event listener, would need to adjust CWU
-    window.addEventListener("resize", this.handleCellHeightResize);
+    window.addEventListener(
+      "resize",
+      _.debounce(this.handleCellHeightResize, 100)
+    );
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.handleCellHeightResize);
+    window.removeEventListener(
+      "resize",
+      _.debounce(this.handleCellHeightResize, 100)
+    );
   }
 
-  dataKeysArr = [];
-  headingsArr = [];
-  dataRowsArr = [];
-
-  initializeData = () => {
-    //initialize table information if data has been passed in
-    if (this.props.data) {
-      this.dataKeysArr = Object.keys(this.props.data);
-      if (this.dataKeysArr.length) {
-        this.headingsArr = Object.keys(this.props.data[this.dataKeysArr[0]]);
-        this.dataRowsArr = this.dataKeysArr.map((key, i) => {
-          return Object.keys(this.props.data[key]).map(e => {
-            return this.props.data[key][e];
-          });
-        });
-      }
+  getCurrentDataKeys = (data, minRange, maxRange) => {
+    if (!data) {
+      return [];
     }
+    return Object.keys(data).slice(minRange - 1, maxRange);
+  };
+
+  getRows = (data, minRange, maxRange) => {
+    if (!data) {
+      return [];
+    }
+    let keys = this.getCurrentDataKeys(data, minRange, maxRange);
+    return keys.map((key, i) => {
+      return Object.keys(data[key]).map(e => {
+        return data[key][e];
+      });
+    });
+  };
+
+  getHeadings = data => {
+    if (!data) {
+      return [];
+    }
+    let templateKey = Object.keys(data)[0];
+    return Object.keys(data[templateKey]);
   };
 
   /* Utilized as <headings>.map(this.renderHeadingRow)
@@ -51,7 +80,7 @@ class Table extends Component {
     return (
       <Cell
         key={`heading-${cellIndex}`}
-        content={this.headingsArr[cellIndex]}
+        content={this.state.headings[cellIndex]}
         header={true}
         fixed={cellIndex === 0}
         height={this.state.cellHeights[0]}
@@ -65,11 +94,11 @@ class Table extends Component {
   renderRow = (_row, rowIndex) => {
     return (
       <tr key={`row-${rowIndex}`}>
-        {this.dataRowsArr[rowIndex].map((_cell, cellIndex) => {
+        {this.state.currentRows[rowIndex].map((_cell, cellIndex) => {
           return (
             <Cell
               key={`${rowIndex}-${cellIndex}`}
-              content={this.dataRowsArr[rowIndex][cellIndex]}
+              content={this.state.currentRows[rowIndex][cellIndex]}
               fixed={cellIndex === 0}
               height={this.state.cellHeights[rowIndex + 1]}
               greyed={rowIndex % 2 === 1 ? true : false}
@@ -98,12 +127,18 @@ class Table extends Component {
     this.setState({ cellHeights: this.getTallestCellHeights() });
   };
 
+  updateRange = (minRange, maxRange) => {
+    this.setState({ minRange: minRange, maxRange: maxRange });
+  };
+
   render() {
+    console.log("rendering");
+
     const theadMarkup = (
-      <tr key="heading">{this.headingsArr.map(this.renderHeadingRow)}</tr>
+      <tr key="heading">{this.state.headings.map(this.renderHeadingRow)}</tr>
     );
 
-    const tbodyMarkup = this.dataRowsArr.map(this.renderRow);
+    const tbodyMarkup = this.state.currentRows.map(this.renderRow);
 
     return (
       <div className="DataTable">
@@ -113,6 +148,20 @@ class Table extends Component {
             <thead>{theadMarkup}</thead>
             <tbody>{tbodyMarkup}</tbody>
           </table>
+        </div>
+        <div className="TableFooter">
+          <div className="TableRange">{`Showing ${this.state.minRange} to ${
+            this.state.maxRange
+          } of ${this.state.dataRange} entries`}</div>
+          <div className="PageRouterContainer">
+            <PageRouter
+              pagination={this.state.pagination}
+              minRange={this.state.minRange}
+              maxRange={this.state.maxRange}
+              dataRange={this.state.dataRange}
+              updateRange={this.updateRange}
+            />
+          </div>
         </div>
       </div>
     );
