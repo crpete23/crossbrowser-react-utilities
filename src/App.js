@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
 
-import { Table } from "./components";
+import { Table, SuperTable } from "./components";
 
-import { data } from "./data/mock-data";
+import { data, columns } from "./data/mock-data";
 
 function App() {
   return (
@@ -11,7 +11,13 @@ function App() {
       <div className="grid-margin">grid</div>
       <div className="grid-playground-container">
         Test Area
-        <Table data={data} title="testing" />
+        {/* <Table data={data} title="testing" /> */}
+        <SuperTable
+          data={Object.keys(data).map(key => {
+            return data[key];
+          })}
+          columns={columns}
+        />
       </div>
       <div className="grid-margin">grid</div>
     </div>

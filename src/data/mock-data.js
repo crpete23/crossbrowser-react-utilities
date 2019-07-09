@@ -153,4 +153,11 @@ const data = {
   }
 };
 
-export { data };
+const columns = [
+  { Header: "ID", accessor: "id" },
+  { Header: "Name", accessor: "name" },
+  { Header: "Type", accessor: "type" },
+  { Header: "Material", accessor: "material" }
+];
+
+export { data, columns };
