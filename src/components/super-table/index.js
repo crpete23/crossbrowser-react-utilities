@@ -1,3 +1,4 @@
 import { SuperTable } from "./SuperTable";
+import TableContainer from "./TableContainer";
 
-export { SuperTable };
+export { SuperTable, TableContainer };

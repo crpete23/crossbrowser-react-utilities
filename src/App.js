@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-import { Table, SuperTable } from "./components";
+import { Table, SuperTable, TableContainer } from "./components";
 
 import { data, columns } from "./data/mock-data";
 
@@ -12,7 +12,13 @@ function App() {
       <div className="grid-playground-container">
         Test Area
         {/* <Table data={data} title="testing" /> */}
-        <SuperTable
+        {/* <SuperTable
+          data={Object.keys(data).map(key => {
+            return data[key];
+          })}
+          columns={columns}
+        /> */}
+        <TableContainer
           data={Object.keys(data).map(key => {
             return data[key];
           })}

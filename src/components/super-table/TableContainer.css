@@ -1,0 +1,154 @@
+.super-table-container {
+  width: 100%;
+}
+
+.super-table-controls-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.super-table-controls-bar-offset {
+  display: flex;
+  flex-grow: 2;
+  align-items: center;
+}
+
+.super-table-controls-bar {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.super-table-download-csv-button {
+  margin-right: 1.5rem;
+  padding: 0.75rem;
+  text-align: center;
+  cursor: pointer;
+  width: 4rem;
+}
+
+.super-table-visible-icon {
+  align-items: center;
+  display: flex;
+  color: black;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+.super-table-visible-icon-off {
+  color: #999;
+}
+
+.super-table-cell {
+  /* important needed to overwrite React Table styles */
+  text-align: left !important;
+  padding-left: 1rem !important;
+}
+
+.table-caret {
+  height: 8px;
+  width: 8px;
+}
+
+.rotated-caret {
+  transform: rotate(180deg);
+  transition: 0.3s;
+}
+
+.-filters div.rt-th {
+  background-color: #d5dbe6 !important;
+}
+
+.rt-th > input {
+  color: black;
+}
+
+.scrollable-draggable-droppable-container {
+  margin-bottom: 40px;
+  overflow-y: scroll;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
+}
+
+.milestoneFilterContainer {
+  position: absolute;
+  background-color: white;
+  z-index: 1;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  right: -6rem;
+  top: 5rem;
+  width: 20vw;
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+.table-filter-container {
+  position: relative;
+}
+
+.table-filter-column {
+  width: 100% !important;
+}
+
+.recently-revise-table-filter-column {
+  width: 100% !important;
+}
+
+.super-table-control-panel-button {
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid #4077e4;
+  color: #fff;
+  background-color: #4077e4;
+  border-radius: 5px;
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
+
+.super-table-control-panel-button-container {
+  position: relative;
+  width: 4rem;
+  margin-right: 1.5rem;
+}
+
+.super-table-dropdown-triangle {
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  height: 10px;
+  z-index: 1;
+  transform: translate(-50%, -5px);
+}
+
+.active-list-item {
+  font-weight: 500;
+  font-size: 12px;
+  color: black;
+}
+
+.inactive-list-item {
+  font-weight: 300;
+  font-size: 12px;
+}
+
+.super-control-tooltip {
+  color: #888;
+  font-size: 16px;
+  padding: 1rem 2rem;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+.milestoneFilterHeading {
+  background-color: #cce5ff;
+  padding: 1rem 0 1rem 1rem;
+  text-align: left;
+}
+
+.no-right-margin {
+  margin-right: 0;
+}

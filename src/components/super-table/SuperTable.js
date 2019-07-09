@@ -24,15 +24,31 @@ const makePlaceholderFilter = (placeholder, { filter, onChange }) => {
   );
 };
 
+// const handleTableEvent = (setViewDataState, tableRef) => {
+//     let newData = tableRef.current.getResolvedState().sortedData;
+//     // Apply ids to view data when deriving from getResolvedState
+//     newData = newData.map(datum => {
+//       return { ...datum, id: datum._original.id };
+//     });
+//     return setViewDataState(newData);
+//   };
+
 export const SuperTable = ({
   columns,
   data,
   hideTableMessage,
   isSearchable = true,
   filterRenderer,
+  //   setViewDataState,
   ...props
 }) => {
   const tableRef = useRef(null);
+
+  //   // When data changes, we can infer that either a filter has been applied
+  //   // and we need to ensure that we preserve the sort and search criteria
+  //   useEffect(() => {
+  //     handleTableEvent(setViewDataState, tableRef);
+  //   }, [data]);
 
   if ((!data || !data.length) && hideTableMessage) {
     return renderNoTable(hideTableMessage);
@@ -64,7 +80,10 @@ export const SuperTable = ({
           }).length > 0
         );
       }}
-      className={"-highlight"}
+      //   onSortedChange={newSorted => handleTableEvent(setViewDataState, tableRef)}
+      //   onFilteredChange={filtered =>
+      //     handleTableEvent(setViewDataState, tableRef)
+      //   }
       columns={columnsCopy}
       data={data}
       {...props}
