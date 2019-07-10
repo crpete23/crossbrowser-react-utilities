@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-import { Table, SuperTable, TableContainer } from "./components";
+import { InfiniteTable, Table, SuperTable, TableContainer } from "./components";
 
 import { data, columns } from "./data/mock-data";
 
@@ -18,12 +18,13 @@ function App() {
           })}
           columns={columns}
         /> */}
-        <TableContainer
+        {/* <TableContainer
           data={Object.keys(data).map(key => {
             return data[key];
           })}
           columns={columns}
-        />
+        /> */}
+        <InfiniteTable />
       </div>
       <div className="grid-margin">grid</div>
     </div>
