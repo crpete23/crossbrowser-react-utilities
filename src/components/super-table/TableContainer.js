@@ -29,7 +29,6 @@ class TableContainer extends Component {
   setViewDataState = viewData => this.setState({ viewData });
 
   render() {
-    console.log(this.state.columns);
     const columnsInTable = this.state.columns.filter(col => !col.doNotShow);
     return (
       <div className="super-table-container">
@@ -39,7 +38,6 @@ class TableContainer extends Component {
         <SuperTable
           {...this.props}
           setViewDataState={this.setViewDataState}
-          showPaginationBottom
           columns={columnsInTable.filter(col => col.isActive && !col.doNotShow)}
         />
       </div>

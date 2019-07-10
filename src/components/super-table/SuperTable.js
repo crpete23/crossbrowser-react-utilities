@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React, { /*Fragment,*/ useRef } from "react";
 import ReactTable from "react-table";
 import matchSorter from "match-sorter";
 import "react-table/react-table.css";
+// import { Waypoint } from "react-waypoint";
 
 const renderNoTable = (hideTableMessage = "No data available") => (
   <div style={{ textAlign: "center" }}>
@@ -67,26 +68,43 @@ export const SuperTable = ({
     tableRef.current.getResolvedState().resized.pop();
   }
   return (
+    // <Fragment>
     <ReactTable
-      filterable={isSearchable}
+      // filterable={isSearchable}
       ref={tableRef}
-      defaultFilterMethod={(filter, row) => {
-        let colKey = filter.id;
-        let query = filter.value;
-        let data = row[colKey];
-        return (
-          matchSorter([data], query, {
-            threshold: matchSorter.rankings.CONTAINS
-          }).length > 0
-        );
-      }}
+      // defaultFilterMethod={(filter, row) => {
+      //   let colKey = filter.id;
+      //   let query = filter.value;
+      //   let data = row[colKey];
+      //   return (
+      //     matchSorter([data], query, {
+      //       threshold: matchSorter.rankings.CONTAINS
+      //     }).length > 0
+      //   );
+      // }}
       //   onSortedChange={newSorted => handleTableEvent(setViewDataState, tableRef)}
       //   onFilteredChange={filtered =>
       //     handleTableEvent(setViewDataState, tableRef)
       //   }
+      className={"-highlight"}
+      showPagination={false}
+      defaultPageSize={5}
       columns={columnsCopy}
       data={data}
       {...props}
     />
+    //  <Waypoint
+    //     onEnter={() => handleWaypointEnter()}
+    //     onLeave={() => handleWaypointLeave()}
+    //   />
+    // </Fragment>
   );
 };
+
+// const handleWaypointEnter = () => {
+//   console.log("entering");
+// };
+
+// const handleWaypointLeave = () => {
+//   console.log("leaving");
+// };
